@@ -4,7 +4,7 @@ Data and code repository for the paper available at: https://jamanetwork.com/jou
 
 The code was written in R and Python 2.7
 
-Users of these code and data should cite Maharana, A. and Nsoesie, E.O., 2018. Use of deep learning to examine the association of the built environment with prevalence of neighborhood adult obesity. JAMA network open, 1(4), pp.e181535-e181535. 
+Users of these code and data should cite *Maharana, A. and Nsoesie, E.O., 2018. Use of deep learning to examine the association of the built environment with prevalence of neighborhood adult obesity. JAMA network open, 1(4), pp.e181535-e181535.* 
 
 Generated figures might differ aesthetically due to post-processing. If you find errors or have questions, please submit an issue.
 
@@ -31,19 +31,36 @@ Python
 * scikit-learn
 * Seaborn
 * Geospatial Data Abstraction Library (GDAL)
-* Caffe
+* Caffe  [insert link to download Caffe]
 
 
 
+### Instructions for extracting satellite image features
 
 
-What things you need to install the software and how to install them
+### Instructions for statistical modeling
 
-```
-Give examples
-```
+Needed
 
-### How to generate plots that appear in the paper
+* Features extracted from the satellite images using CNN
+* Points of interest data
+* Obesity prevalence from the 500 cities project
+
+To model the association between the features extracted from the satellite images using the CNN and obesity prevalence, the user needs to run
+
+* elasticnet_regression.R
+
+You can use the same script to model the association between the points of interest data and obesity prevalence. The script is located in the src folder. The same script can be used for modeling data for different locations by changing the directory of the data files.
+
+
+### Instructions for creating figures 
+
+Needed
+
+* Obesity prevalence from 500 cities project
+* File containing model estimated/predicted obesity prevalence 
+* Shapefiles 
+
 
 #### Figures 2 and 3 in Main Text
 
@@ -59,44 +76,17 @@ cd src
 python fig_true_obesity.py
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+#### Figures 2 and 3 in Main Text
 
 ```
-Give an example
+cd src
+python fig_pred_obesity.py
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
+#### Part (a) of eFigures 4, 6, 8 and 10 in Supplementary Material 
 
 ```
-Give an example
+cd src
+python fig_true_obesity.py
 ```
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
