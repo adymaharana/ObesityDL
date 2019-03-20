@@ -2,16 +2,40 @@
 
 Data and code repository for the paper available at: https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2698635
 
+The code was written in R and Python 2.7
+
+Users of these code and data should cite Maharana, A. and Nsoesie, E.O., 2018. Use of deep learning to examine the association of the built environment with prevalence of neighborhood adult obesity. JAMA network open, 1(4), pp.e181535-e181535. 
+
+Generated figures might differ aesthetically due to post-processing. If you find errors or have questions, please submit an issue.
+
 ## Getting Started
 
 This repository contains:
-* Census files downloaded from from [American Community Survey](https://www.census.gov/programs-surveys/acs)
+* Census files downloaded from [American Community Survey](https://www.census.gov/programs-surveys/acs)
 * Obesity data downloaded from the [500 cities](https://www.cdc.gov/500cities/index.htm) project
 * Shapefiles for plotting census tracts of Los Angeles, Memphis, Seattle-Tacoma-Bellevue and San Antonio, downloaded from various sources
 * R and Python scripts for preparing data and running the models
 * Output files generated from the prediction models
 
-### Prerequisites
+### Packages required
+R
+* MASS
+* glmnet
+* ggplot2
+
+
+Python 
+* NumPy
+* Pandas
+* SciPy
+* scikit-learn
+* Seaborn
+* Geospatial Data Abstraction Library (GDAL)
+* Caffe
+
+
+
+
 
 What things you need to install the software and how to install them
 
