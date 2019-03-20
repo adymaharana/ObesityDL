@@ -2,6 +2,12 @@
 
 Data and code repository for the paper available at: https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2698635
 
+The code was written in R and Python 2.7
+
+Users of these code and data should cite Maharana, A. and Nsoesie, E.O., 2018. Use of deep learning to examine the association of the built environment with prevalence of neighborhood adult obesity. JAMA network open, 1(4), pp.e181535-e181535. 
+
+Generated figures might differ aesthetically due to post-processing. If you find errors or have questions, please submit an issue.
+
 ## Getting Started
 
 This repository contains:
