@@ -35,13 +35,14 @@ Python
 
 
 
-### Instructions for downloading satellite images
+### Instructions for downloading satellite images and places of interest data
 
 Requirements
 * Obesity prevalence from the 500 cities project
 * Shapefiles in the .geojson format
 * Google Static Maps API Key
 
+#### Satellite Images
 ```
 cd src
 ```
@@ -50,6 +51,14 @@ Make necessary changes to the variables *key*, *city* and *geojsonfile* (require
 python download_img.py
 ```
 
+#### Places of Interest
+```
+cd src
+```
+Make necessary changes to the variables *key*, *city* and *geojsonfile* (required) in the script *download_poi.py*.
+```
+python download_poi.py
+```
 
 ### Instructions for statistical modeling
 
