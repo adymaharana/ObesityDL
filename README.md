@@ -35,7 +35,20 @@ Python
 
 
 
-### Instructions for extracting satellite image features
+### Instructions for downloading satellite images
+
+Requirements
+* Obesity prevalence from the 500 cities project
+* Shapefiles in the .geojson format
+* Google Static Maps API Key
+
+```
+cd src
+```
+Make necessary changes to the variables *key*, *city* and *geojsonfile* (required) and other download parameters such as resolution, file format, map type etc. in the script *download_img.py*.
+```
+python download_img.py
+```
 
 
 ### Instructions for statistical modeling
