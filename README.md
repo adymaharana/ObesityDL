@@ -19,6 +19,8 @@ This repository contains:
 
 Image feature vector files for each city are too large to be hosted on github. They are available upon request.
 
+Weights for pretrained VGG-CNN-F Caffe model and associated files are available [here](https://gist.github.com/ksimonyan/a32c9063ec8e1118221a#file-readme-md).
+
 ### Packages required
 R
 * MASS
@@ -33,8 +35,7 @@ Python
 * scikit-learn
 * Seaborn
 * Geospatial Data Abstraction Library (GDAL)
-* Caffe  [insert link to download Caffe]
-
+* Caffe ([find instructions here](http://caffe.berkeleyvision.org/installation.html))
 
 
 ## Instructions for downloading satellite images and places of interest data
@@ -44,22 +45,54 @@ Requirements
 * Shapefiles in the .geojson format
 * Google Static Maps API Key
 
-### Satellite Images
 ```
 cd src
 ```
+
+### Satellite Images
+
 Make necessary changes to the variables *key*, *city* and *geojsonfile* (required) and other download parameters such as resolution, file format, map type etc. in the script *download_img.py*.
 ```
 python download_img.py
 ```
 
 ### Places of Interest
-```
-cd src
-```
+
 Make necessary changes to the variables *key*, *city* and *geojsonfile* (required) in the script *download_poi.py*.
 ```
 python download_poi.py
+```
+
+## Instructions for preparing feature vectors
+
+### Satellite Image Features using Convolutional Neural Network
+
+Requirements
+
+* VGG_CNN_F Caffe model weights and associated files
+* Satellite images
+
+Make necessary changes to the variables *city* and *imgdir* in the script *extract_img_features.py*.
+```
+python extract_img_features.py
+```
+
+Make necessary changes to the variable *city* in the script *img2xy.py*.
+```
+python img2xy.py
+```
+
+
+### ACS Feature Vector (Socio-economic Factors)
+
+Requirements
+
+* ACS files for each city
+* Obesity prevalence from 500 cities project
+
+```
+cd src
+python aggr_acs.py
 ```
 
 ## Instructions for statistical modeling
@@ -76,19 +109,6 @@ To model the association between the features extracted from the satellite image
 
 You can use the same script to model the association between the points of interest data and obesity prevalence. The script is located in the src folder. The same script can be used for modeling data for different locations by changing the directory of the data files.
 
-## Instructions for creating feature vectors
-
-### ACS Feature Vector (Socio-economic Factors)
-
-Requirements
-
-* ACS files for each city
-* Obesity prevalence from 500 cities project
-
-```
-cd src
-python aggr_acs.py
-```
 
 ## Instructions for creating figures 
 
