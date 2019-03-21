@@ -17,6 +17,8 @@ This repository contains:
 * R and Python scripts for preparing data and running the models
 * Output files generated from the prediction models
 
+Image feature vector files for each city are too large to be hosted on github. They are available upon request.
+
 ### Packages required
 R
 * MASS
@@ -35,14 +37,14 @@ Python
 
 
 
-### Instructions for downloading satellite images and places of interest data
+## Instructions for downloading satellite images and places of interest data
 
 Requirements
 * Obesity prevalence from the 500 cities project
 * Shapefiles in the .geojson format
 * Google Static Maps API Key
 
-#### Satellite Images
+### Satellite Images
 ```
 cd src
 ```
@@ -51,7 +53,7 @@ Make necessary changes to the variables *key*, *city* and *geojsonfile* (require
 python download_img.py
 ```
 
-#### Places of Interest
+### Places of Interest
 ```
 cd src
 ```
@@ -60,7 +62,7 @@ Make necessary changes to the variables *key*, *city* and *geojsonfile* (require
 python download_poi.py
 ```
 
-### Instructions for statistical modeling
+## Instructions for statistical modeling
 
 Requirements
 
@@ -74,9 +76,9 @@ To model the association between the features extracted from the satellite image
 
 You can use the same script to model the association between the points of interest data and obesity prevalence. The script is located in the src folder. The same script can be used for modeling data for different locations by changing the directory of the data files.
 
-### Instructions for creating feature vectors
+## Instructions for creating feature vectors
 
-#### ACS Feature Vector (Socio-economic Factors)
+### ACS Feature Vector (Socio-economic Factors)
 
 Requirements
 
@@ -88,7 +90,7 @@ cd src
 python aggr_acs.py
 ```
 
-### Instructions for creating figures 
+## Instructions for creating figures 
 
 Requirements
 
@@ -97,7 +99,7 @@ Requirements
 * Shapefiles 
 
 
-#### Figures 2 and 3 in Main Text
+### Figures 2 and 3 in Main Text
 
 ```
 cd src
@@ -105,7 +107,7 @@ python fig_true_obesity.py
 python fig_pred_obesity.py
 ```
 
-#### Part (b) of eFigures 4, 6, 8 and 10 in Supplementary Material 
+### Part (b) of eFigures 4, 6, 8 and 10 in Supplementary Material 
 
 Uncomment lines 14, 15, and 16 in the script *fig_pred_obesity.py*
 ```
@@ -113,7 +115,7 @@ cd src
 python fig_pred_obesity.py
 ```
 
-#### eFigures 15 and 16 in Supplementary Material 
+### eFigures 15 and 16 in Supplementary Material 
 
 ```
 cd src
@@ -124,3 +126,5 @@ Uncomment lines 18, 19 and 20 in the script *fig_pred_obesity.py*
 python fig_pred_obesity.py
 ```
 
+## Acknowledgement
+The code used in the script *raycast.py* is from an openly available github repository but.. we forgot to record the project link when we found the code. To whoever is the author of the code, thank you very much for making it available and if you come across this repository, let us know asap. We will add your name and link to your github repository promptly. Thanks!
