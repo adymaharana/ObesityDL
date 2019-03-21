@@ -4,18 +4,11 @@ import os, json, csv, sys
 import numpy as np
 import time
 
-maptype = "satellite"
-key = "AIzaSyAUw5RU-RKMK9GgmSI9ZMxGL5ZtKcGgbD0"
-# key = "AIzaSyDEBmXkpWqV9lZqVvIAXyTjDNN5mJmb7fM"
-size = "400x400"
-zoom = "18"
-fileformat = "png"
+key = ""
 city = 'lacity'
 datadir = '../data'
 outdir = '../out'
-imgdir = '/media/ady/Adyasha/obesity/data/san-antonio/image_by_census_tract_z18'
 
-#San Antonio
 lat2metres = 110843.73
 lon2metres = 96984.22
 
@@ -111,16 +104,8 @@ def getCentroidParams(boundary_locs):
     centrLat = (latMin + latMax)/2
     centrLon = (lonMin + lonMax)/2
 
-    # download_locs = []
-    # for i in np.arange(latMin + 0.001, latMax, 0.0025):
-    #     for j in np.arange(lonMin + 0.001, lonMax, 0.0025):
-    #         if p.contains(Point(i, j)):
-    #             download_locs.append((i, j))
-
     radius = int(abs(latMax-latMin)*lat2metres/2) if (abs(latMax-latMin) > abs(lonMax-lonMin)) else int(abs(lonMax-lonMin)*lon2metres/2)
 
-    # if len(download_locs) == 0:
-    #     download_locs.append(((latMin + latMax) / 2, (lonMin + lonMax) / 2))
     return centrLat, centrLon, radius
 
 def readObfile(obfile):
@@ -173,7 +158,7 @@ def getPOILocations(geojsonfile, tractids):
     totalLocs = 0
     # boundary locations are in the counter clockwise direction
     for tract in filtered_shapes:
-        print('*', end = ', ')
+        print('*', end=", ")
         sys.stdout.flush()
         boundary_locs = tract['geometry']['coordinates'][0]
     #     print(boundary_locs)
@@ -265,9 +250,6 @@ def downloadPOI(geojsonfile, tractids):
         print(count, '/', total, tractid, lat, lon, radius, '*')
         sys.stdout.flush()
 
-        # print(poi_dict)
-        # break
-
     with open(os.path.join(datadir, city, city + '_tract_poi.json'), 'w') as f:
         json.dump(poi_by_tract, f)
 
@@ -320,5 +302,5 @@ if __name__ == "__main__":
         geojsonfile = '../data/stb/wa_census_tracts.geojson'
     elif city == 'lacity':
         geojsonfile = '../data/lacity/california_census_tracts.geojson'
-    # downloadPOI(geojsonfile, tractids)
+    downloadPOI(geojsonfile, tractids)
     poijson2num()

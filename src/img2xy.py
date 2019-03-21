@@ -1,47 +1,9 @@
 import csv, os, json
 import numpy as np
 
-
-def poi_features(poijsonfile):
-    with open(poijsonfile, 'r') as f:
-        poi_list = json.load(f)
-    print(len(poi_list))
-
-    poi_keys = []
-    tract2ind = {}
-    for tract, poi_dict in poi_list.items():
-        keys = list(poi_dict.keys())
-        for key in keys:
-            if key not in poi_keys:
-                poi_keys.append(key)
-    if 'filename' in poi_keys:
-        poi_keys.remove('filename')
-    if 'loc' in poi_keys:
-        poi_keys.remove('loc')
-    poi_keys.remove('point_of_interest')
-    poi_keys.remove('establishment')
-    poi_keys.remove('locality')
-    poi_keys.remove('political')
-
-    print(len(poi_keys))
-    print(poi_keys)
-    poi_feats = []
-    counter = 0
-    for tract, poi_dict in poi_list.items():
-        tract2ind[tract] = counter
-        counter += 1
-        temp = [0] * len(poi_keys)
-        for i in range(0, len(poi_keys)):
-            try:
-                temp[i] = poi_dict[poi_keys[i]]
-            except KeyError:
-                continue
-        poi_feats.append(temp)
-
-    return (tract2ind, np.array(poi_feats))
-
 city = 'lacity'
 datadir = '../data'
+vecdir = '../out'
 
 tractids = []
 obvalues = {}
@@ -68,11 +30,9 @@ with open(os.path.join(datadir, city, '500_cities_' + city + '_obesity.csv'), 'r
         obvalues[row[tractind]] = row[dataind]
 print(tractids)
 
-vecdir = '/media/ady/Adyasha1/us_crime'
-# outdir = '/media/ady/Adyasha/us_crime/xy'
-# vecdir = '/media/ady/Adyasha1/obesity/out'
 
-files = [os.path.join(vecdir, city, f) for f in os.listdir(os.path.join(vecdir, city)) if city in f]
+
+files = [os.path.join(vecdir, city, f) for f in os.listdir(os.path.join(vecdir, city)) if f.endswith('.npy')]
 files.sort()
 init = False
 for file in files:
@@ -120,7 +80,6 @@ for tractid in tractids:
     avgfeatures.append(avgfeature)
     tractobvals.append(float(obvalues[tractid]))
     tractids_model.append(tractid)
-# avgpcc = np.array(avgpcc)
 avgfeatures = np.array(avgfeatures)
 print(avgfeatures.shape)
 

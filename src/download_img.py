@@ -4,17 +4,19 @@ import os, json, csv, sys
 import numpy as np
 
 maptype = "satellite"
-#key = "AIzaSyAUw5RU-RKMK9GgmSI9ZMxGL5ZtKcGgbD0"
-key = "AIzaSyDEBmXkpWqV9lZqVvIAXyTjDNN5mJmb7fM"
 size = "400x400"
 zoom = "18"
 fileformat = "png"
 city = 'lacity'
 datadir = '../data'
 outdir = '../out'
-# imgdir = '/media/ady/Adyasha1/obesity/lacity_tracts_18_2'
-imgdir = '../data/lacity/tract2010'
+imgdir = '../data/lacity/'
 
+# Use your Google Static Maps API key
+key = ""
+
+# Parse the shapefiles to find census tract boundaries and map it to a square grid 
+# to extract latitude-longitude pairs for download locations.
 def getDownloadLocs(boundary_locs):
     p = Polygon([Point(l2, l1) for l1, l2 in boundary_locs])
     lats = [pair[1] for pair in boundary_locs]
@@ -34,6 +36,7 @@ def getDownloadLocs(boundary_locs):
         download_locs.append(((latMin + latMax) / 2, (lonMin + lonMax) / 2))
     return download_locs
 
+# Read obesity file from 500 cities project
 def readObfile(obfile):
 
     tractids = []
@@ -62,6 +65,7 @@ def readObfile(obfile):
     print('Total number of census tracts in datafile: ', len(tractids))
     return tractids, obvalues
 
+# Get download locations and write it to a csv file
 def writeLocations(geojsonfile, tractids):
 
     with open(geojsonfile, 'r') as f:
@@ -97,7 +101,7 @@ def writeLocations(geojsonfile, tractids):
         locs = getDownloadLocs(boundary_locs)
         locs_by_tract[tractid] = locs
 
-    f = open(os.path.join(datadir, city, 'download_' + city + '_tract_18_imgs_locs_2.csv'), 'w')
+    f = open(os.path.join(datadir, city, 'download_' + city + '_tract_18_imgs_locs.csv'), 'w')
     locwriter = csv.writer(f)
     loc_count = 0
     for tractid in list(locs_by_tract.keys()):
@@ -113,6 +117,7 @@ def writeLocations(geojsonfile, tractids):
     print("Total number of download locations: ", loc_count)
     return
 
+# Download images from Google Static Maps API
 def downloadImages(locfile):
 
     f = open(locfile, 'r')
@@ -122,8 +127,6 @@ def downloadImages(locfile):
     for row in locreader:
 
         download_count += 1
-        # if download_count <= 18398:
-        #     continue
         loc = row[1]
         img_url = "https://maps.googleapis.com/maps/api/staticmap?" + \
                   "center=" + loc + "&" + \
@@ -159,17 +162,16 @@ if __name__ == "__main__":
 
     tractids, _ = readObfile(os.path.join(datadir, city, '500_cities_' + city + '_obesity.csv'))
 
-    with open(os.path.join(datadir, city, 'tractids.txt'), 'r') as f:
-        tractids_prev = [tract.strip() for tract in f.read().split()]
+    # with open(os.path.join(datadir, city, 'tractids.txt'), 'r') as f:
+    #     tractids_prev = [tract.strip() for tract in f.read().split()]
 
-    tracts_filtered = []
-    for tract in tractids:
-        if tract in tractids_prev:
-            continue
-        tracts_filtered.append(tract)
-    print(len(tracts_filtered))
-
-    tractids = ['06037930401']
+    # tracts_filtered = []
+    # for tract in tractids:
+    #     if tract in tractids_prev:
+    #         continue
+    #     tracts_filtered.append(tract)
+    # print(len(tracts_filtered))
+    # tractids = ['06037930401']
 
     # geojsonfile = '../data/san-antonio/mapping/Bexar_County_Census_Tracts.geojson'
     # geojsonfile = '../data/lacity/california_census_tracts.geojson'
@@ -177,5 +179,5 @@ if __name__ == "__main__":
     geojsonfile = '../data/lacity/tigerShp/gz_2010_06_140_00_500k.json'
     # writeLocations(geojsonfile, tractids)
 
-    locfile = os.path.join(datadir, city, 'download_' + city + '_tract_18_imgs_locs_2.csv')
+    locfile = os.path.join(datadir, city, 'download_' + city + '_tract_18_imgs_locs.csv')
     downloadImages(locfile)
