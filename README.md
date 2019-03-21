@@ -85,7 +85,7 @@ python fig_pred_obesity.py
 
 #### Part (b) of eFigures 4, 6, 8 and 10 in Supplementary Material 
 
-Uncomment lines 14, 15, and 16 in the file fig_pred_obesity.py
+Uncomment lines 14, 15, and 16 in the script *fig_pred_obesity.py*
 ```
 cd src
 python fig_pred_obesity.py
@@ -97,7 +97,7 @@ python fig_pred_obesity.py
 cd src
 python fig_true_income.py
 ```
-Uncomment lines 18, 19, 20 in the file fig_pred_obesity.py
+Uncomment lines 18, 19 and 20 in the script *fig_pred_obesity.py*
 ```
 python fig_pred_obesity.py
 ```
