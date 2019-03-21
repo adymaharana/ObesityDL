@@ -17,8 +17,7 @@ This repository contains:
 * R and Python scripts for preparing data and running the models
 * Output files generated from the prediction models
 
-Image feature vector files for each city are too large to be hosted on github. They are available upon request.
-
+Image feature vector files for each city are too large to be hosted on github. They are available upon request.\
 Weights for pretrained VGG-CNN-F Caffe model and associated files are available [here](https://gist.github.com/ksimonyan/a32c9063ec8e1118221a#file-readme-md).
 
 ### Packages required
