@@ -40,7 +40,7 @@ Python
 
 ### Instructions for statistical modeling
 
-Needed
+Requirements
 
 * Features extracted from the satellite images using CNN
 * Points of interest data
@@ -52,10 +52,23 @@ To model the association between the features extracted from the satellite image
 
 You can use the same script to model the association between the points of interest data and obesity prevalence. The script is located in the src folder. The same script can be used for modeling data for different locations by changing the directory of the data files.
 
+### Instructions for creating feature vectors
+
+#### ACS Feature Vector (Socio-economic Factors)
+
+Requirements
+
+* ACS files for each city
+* Obesity prevalence from 500 cities project
+
+```
+cd src
+python aggr_acs.py
+```
 
 ### Instructions for creating figures 
 
-Needed
+Requirements
 
 * Obesity prevalence from 500 cities project
 * File containing model estimated/predicted obesity prevalence 
@@ -66,27 +79,26 @@ Needed
 
 ```
 cd src
+python fig_true_obesity.py
 python fig_pred_obesity.py
 ```
 
-#### Part (a) of eFigures 4, 6, 8 and 10 in Supplementary Material 
+#### Part (b) of eFigures 4, 6, 8 and 10 in Supplementary Material 
 
-```
-cd src
-python fig_true_obesity.py
-```
-
-#### Figures 2 and 3 in Main Text
-
+Uncomment lines 14, 15, and 16 in the file fig_pred_obesity.py
 ```
 cd src
 python fig_pred_obesity.py
 ```
 
-#### Part (a) of eFigures 4, 6, 8 and 10 in Supplementary Material 
+#### eFigures 15 and 16 in Supplementary Material 
 
 ```
 cd src
-python fig_true_obesity.py
+python fig_true_income.py
+```
+Uncomment lines 18, 19, 20 in the file fig_pred_obesity.py
+```
+python fig_pred_obesity.py
 ```
 
